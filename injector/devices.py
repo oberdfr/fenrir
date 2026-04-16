@@ -20,24 +20,24 @@ DEVICES = [
             # The first address is the virtual base address where the stage payload is       
             # injected. The second address is the address of the `bl` call that we override  
             # to jump to the payload instead (called pivot by me, which is probably wrong).
-            #'stage1': PayloadStage(
-            #    'stage1',
-            #    0xFFFF000050F6F0A8,  # emmc_init()
-            #    0xFFFF000050F05DA4,  # platform_init()
-            #    description='Pre-platform initialization stage',
-            #),
-            #'stage2': PayloadStage(
-            #    'stage2',
-            #    0xFFFF000050F6AE98, # msdc_tune_cmdrsp()
-            #    0xFFFF000050F0E088, # bl notify_enter_fastboot()
-            #    description='Pre-fastboot initialization stage',
-            #),
-            #'stage3': PayloadStage(
-            #    'stage3',
-            #    0xFFFF000050F6C168, # msdc_config_bus()
-            #    0xFFFF000050F0E0A4, # bl dprintf("%s:%d: Notify boot linux.\n")
-            #    description='Linux initialization stage',
-            #),
+            'stage1': PayloadStage(
+                'stage1',
+                0xFFFF000050F6F91C,  # emmc_init()
+                0xFFFF000050F05DA4,  # bl platform_init()
+                description='Pre-platform initialization stage',
+            ),
+            'stage2': PayloadStage(
+                'stage2',
+                0xFFFF000050F6B0CC, # msdc_tune_cmdrsp()
+                0xFFFF000050F0E18C, # bl notify_enter_fastboot()
+                description='Pre-fastboot initialization stage',
+            ),
+            'stage3': PayloadStage(
+                'stage3',
+                0xFFFF000050F6C39C, # msdc_config_bus()
+                0xFFFF000050F0E1A8, # bl dprintf("%s:%d: Notify boot linux.\n")
+                description='Linux initialization stage',
+            ),
 
             # This is what makes it possible for this exploit to work. Long
             # story short, an LK image has various partitions inside it,
